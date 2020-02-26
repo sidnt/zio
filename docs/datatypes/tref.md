@@ -3,7 +3,7 @@ id: datatypes_tref
 title:  "TRef"
 ---
 
-A `TRef[A]` is a mutable reference to an immutable value, which can participate in transactions in STM. The mutable reference can be retrieved and set from within transactions, with strong guarantees for atomicity, consistency, and isolation from other transactions.
+A `TRef[A]` is a mutable reference to an immutable¹ value `a:A`, which can participate in transactions in STM. The mutable reference can be retrieved and set from within transactions, with strong guarantees for atomicity, consistency, and isolation from other transactions.
 
 `TRef` provides the low-level machinery to create transactions from modifications of STM memory.
 
@@ -172,3 +172,8 @@ val transferredMoney: UIO[String] = for {
 In this example, we create and commit two transactional references for the sender and receiver to be able to extract their value. 
 On the following step, we create an atomic transactional that updates both accounts only when there is sufficient balance available in the sender account. In the end, we fork to run asynchronously.
 On the running fiber, we suspend until the sender balance suffers changes, in this case, to reach `zero`. Finally, we extract the new values out of the accounts and combine them in one result. 
+
+---
+
+> ¹ There's nothing enforced in A (the type) though, to guarantee immutability of A and prevent users from using a mutable object `a:A`.
+
