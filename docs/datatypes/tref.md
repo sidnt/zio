@@ -175,5 +175,5 @@ On the running fiber, we suspend until the sender balance suffers changes, in th
 
 ---
 
-> ¹ There's nothing enforced in A (the type) though, to guarantee immutability of A and prevent users from using a mutable object `a:A`.
+¹ There's nothing enforced in A (the type) though, to guarantee immutability of A and prevent users from using a mutable object `a:A`.
 
